@@ -11,7 +11,11 @@ const TextEditor = () => {
 
     const textToArr = text
       ?.match(/\S+/g)
-      ?.map((word) => word.replace(/[^a-zA-Z ]/g, "").toLowerCase());
+      ?.map((word) =>
+        word
+          .replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>{}[\]\\/]/gi, "")
+          .toLowerCase()
+      );
 
     const unique = [...new Set(textToArr)];
     const arrWithCount = unique.map((word) => ({
