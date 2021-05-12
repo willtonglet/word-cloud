@@ -39,10 +39,10 @@ export const StyledWordHover = styled.div<{ count: number }>`
   display: flex;
   flex-direction: column;
   font-size: 3rem;
-  font-weight: lighter;
+  font-weight: 200;
 
   h2 {
-    font-weight: normal;
+    font-weight: 500;
     line-height: 0;
     font-size: 8rem;
   }
