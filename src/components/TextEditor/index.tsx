@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
+import api from "../../services/api";
 import { StyledTextEditor } from "./styles";
 
 const TextEditor = () => {
@@ -11,7 +12,8 @@ const TextEditor = () => {
 
     const textToArr = text
       ?.match(/\S+/g)
-      ?.map((word) =>
+      ?.sort(() => 0.5 - Math.random())
+      .map((word) =>
         word
           .replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>{}[\]\\/]/gi, "")
           .toLowerCase()
@@ -22,11 +24,15 @@ const TextEditor = () => {
       word,
       count: Number(textToArr?.filter((str) => str === word).length),
     }));
+    const generateRamdomId = "_" + Math.random().toString(36).substr(2, 9);
 
-    history.push({
-      pathname: "/word-cloud",
-      state: { arrWithCount, all: textToArr?.length },
+    api.postWords({
+      arrWithCount,
+      all: Number(textToArr?.length),
+      id: generateRamdomId,
     });
+
+    history.push(`/word-cloud/${generateRamdomId}`);
   };
 
   return (

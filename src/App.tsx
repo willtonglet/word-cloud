@@ -11,7 +11,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact component={FormPage} />
-          <Route path="/word-cloud" exact component={WordCloud} />
+          <Route path="/word-cloud/:id" exact component={WordCloud} />
         </Switch>
       </Router>
     </>
