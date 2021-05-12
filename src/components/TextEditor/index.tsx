@@ -32,7 +32,7 @@ const TextEditor = () => {
       id: generateRamdomId,
     });
 
-    history.push(`/word-cloud/${generateRamdomId}`);
+    history.push(`/${generateRamdomId}`);
   };
 
   return (
