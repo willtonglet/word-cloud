@@ -8,8 +8,8 @@ export const StyledWord = styled.div<{ count: number; all: number }>`
   cursor: pointer;
 
   ${({ count, all }) => ` 
-    font-size: ${Math.round((count / all) * 100 * 3)}vw; 
-    line-height: ${Math.round((count / all) * 100 * 2)}vw;`}
+    font-size: ${(count / all) * 100 * 3}vw; 
+    line-height: ${(count / all) * 100 * 2}vw;`}
 
   span {
     transition: 0.25s ease-in-out;
