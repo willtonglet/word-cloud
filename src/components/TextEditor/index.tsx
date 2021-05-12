@@ -24,7 +24,7 @@ const TextEditor = () => {
       word,
       count: Number(textToArr?.filter((str) => str === word).length),
     }));
-    const generateRamdomId = "_" + Math.random().toString(36).substr(2, 9);
+    const generateRamdomId = "_" + Math.random().toString(36).substr(2, 14);
 
     api.postWords({
       arrWithCount,
