@@ -31,9 +31,7 @@ const api = {
         headers,
       })
         .then((response) => {
-          if (response.ok && response.status === 200) {
-            resolve(true);
-          }
+          if (response.ok) resolve(true);
         })
         .catch((err) => {
           reject(err);

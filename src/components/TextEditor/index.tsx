@@ -5,6 +5,7 @@ import { StyledTextEditor } from "./styles";
 
 const TextEditor = () => {
   const [text, setText] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -26,13 +27,17 @@ const TextEditor = () => {
     }));
     const generateRamdomId = "_" + Math.random().toString(36).substr(2, 9);
 
-    api.postWords({
-      arrWithCount,
-      all: Number(textToArr?.length),
-      id: generateRamdomId,
-    });
-
-    history.push(`/${generateRamdomId}`);
+    api
+      .postWords({
+        arrWithCount,
+        all: Number(textToArr?.length),
+        id: generateRamdomId,
+      })
+      .then(() => {
+        setIsLoading(true);
+        history.push(`/${generateRamdomId}`);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -43,9 +48,12 @@ const TextEditor = () => {
           value={text}
           onChange={(e) => setText(e.target.value)}
           rows={10}
+          disabled={isLoading}
           required
         />
-        <button type="submit">Generate</button>
+        <button type="submit" disabled={isLoading}>
+          Generate
+        </button>
       </form>
     </StyledTextEditor>
   );
