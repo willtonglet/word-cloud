@@ -6,10 +6,13 @@ import { StyledTextEditor } from "./styles";
 const TextEditor = () => {
   const [text, setText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const history = useHistory();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    setError("");
 
     const textToArr = text
       ?.match(/\S+/g)
@@ -34,10 +37,13 @@ const TextEditor = () => {
         id: generateRamdomId,
       })
       .then(() => {
-        setIsLoading(true);
+        setIsLoading(false);
         history.push(`/${generateRamdomId}`);
       })
-      .catch((err) => console.log(err));
+      .catch(() => {
+        setIsLoading(false);
+        setError("There was a problem. Try again later.");
+      });
   };
 
   return (
@@ -54,6 +60,8 @@ const TextEditor = () => {
         <button type="submit" disabled={isLoading}>
           Generate
         </button>
+        {isLoading && <span className="loading">Loading Word Cloud...</span>}
+        {error && <span className="error">{error}</span>}
       </form>
     </StyledTextEditor>
   );

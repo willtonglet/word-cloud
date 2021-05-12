@@ -11,6 +11,10 @@ export const StyledTextEditor = styled.div`
       resize: none;
       width: 360px;
       padding: 1rem;
+
+      &:disabled {
+        opacity: 0.5;
+      }
     }
 
     button {
@@ -21,6 +25,19 @@ export const StyledTextEditor = styled.div`
       margin-top: 0.5rem;
       cursor: pointer;
       font-size: 1rem;
+
+      &:disabled {
+        opacity: 0.5;
+      }
     }
+  }
+
+  .error {
+    color: red;
+    margin-top: 1rem;
+  }
+
+  .loading {
+    margin-top: 1rem;
   }
 `;
