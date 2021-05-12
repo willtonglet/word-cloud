@@ -3,7 +3,7 @@ import WordsParams from "./interfaces";
 const baseURL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:5000"
-    : "https://word-cloud-api.herokuapp.com/";
+    : "https://word-cloud-api.herokuapp.com";
 
 const headers = new Headers({ "Content-Type": "application/json" });
 
